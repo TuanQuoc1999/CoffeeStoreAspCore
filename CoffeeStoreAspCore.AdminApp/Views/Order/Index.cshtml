@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CoffeeStoreAspCore.ViewModels.Catalog.Bills.BillViewModel>
+@using CoffeeStoreAspCore.Data.Enums
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+
+    <div class="card mb-4 mt-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Invoices</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead  style=" background:#ffd800">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Days)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.TotalQuantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CodeText)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ActualTotalAmount)
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>ConfirmPayment</th>
+                            <th>Pending</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Days)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalQuantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CodeText)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ActualTotalAmount)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.status)
+
+                            </td>
+                            <td>
+                                <a class="btn btn-success" asp-action="ConfirmPayment" asp-route-id="@item.Id" asp-route-Status="@OrderStatus.Success"><i class="fas fa-check-circle"></i> Confirm </a>
+
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="Pending" asp-route-id="@item.Id" asp-route-Status="@OrderStatus.Canceled">  <i class="fas fa-times-circle"></i> Cancel </a>
+
+                            </td>
+                            <td>
+                                <a class="btn btn-info" asp-action="Detail" asp-route-id="@item.Id">  <i class="fas fa-info-circle"></i> Detail </a>
+
+                            </td>
+                           
+                        </tr>
+}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

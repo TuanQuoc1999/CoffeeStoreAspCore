@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CoffeeStoreAspCore.ViewModels.Catalog.DrinkViewModel>
+@using CoffeeStoreAspCore.Data.Enums
+@{
+    ViewData["Title"] = "Drink";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+
+
+
+    <div class="card mb-4 mt-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Drink</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <p >
+                     <a class="btn btn-info"  asp-action="Create"> <i class="fa fa-plus-circle" style="color:#0dc744" ></i> Create New</a>
+                </p>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead style=" background:#ffd800">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UnitPrice)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NameMenu)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DrinkImage)
+                            </th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameMenu)
+                            </td>
+                            <td>
+
+                                <img height="40" width="40" src="https://localhost:5001/user-content/@item.DrinkImage.ImagePath" />
+
+                            </td>
+                            <td>
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id"> <i class="fas fa-edit" style="color:#00ff21"></i> Edit</a>
+
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id" asp-route-Status="@Status.InActive"> <i class="fas fa-trash-alt" style="color:#ffffff"></i> Delete </a>
+
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

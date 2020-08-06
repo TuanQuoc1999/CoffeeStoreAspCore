@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-datetimepicker@2.5.20",
+      "destination": "wwwroot/lib/jquery-datetimepicker/"
+    },
+    {
+      "library": "moment.js@2.24.0",
+      "destination": "wwwroot/lib/moment.js/"
+    }
+  ,
+{
+  "library": "datejs@1.0",
+  "destination": "wwwroot/lib/datejs/"
+}
+,
+{
+  "library": "jquery@3.5.0",
+  "destination": "wwwroot/lib/jquery/"
+}
+,
+{
+  "library": "signalr.js@2.4.1",
+  "destination": "wwwroot/lib/signalr.js/"
+}
+,
+{
+  "library": "bootbox.js@5.4.0",
+  "destination": "wwwroot/lib/bootbox.js/"
+}
+,
+{
+  "library": "bootstrap-daterangepicker@3.0.5",
+  "destination": "wwwroot/lib/bootstrap-daterangepicker/"
+}
+]
+}

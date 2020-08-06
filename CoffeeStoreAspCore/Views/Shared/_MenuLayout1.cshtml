@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+
+<div class=" nenden navbar-inverse fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <nav class="navbar  ">
+                    <a class="navbar-brand logo" asp-controller="home" asp-action="index">Home Coffee</a>
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="home" asp-action="index">Trang chủ <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="menu" asp-action="index">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Khuyến mãi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Ưu đãi thành viên</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Cửa hàng - Liên hệ</a>
+                        </li>
+                    </ul>
+
+                    <form class="form-inline navbar-form pull-right">
+                        <input class="form-control" type="text" placeholder="Search">
+                        <button class="btn btn-success-outline" type="submit"><i class="fa fa-search">	</i></button>
+
+                    </form>
+
+
+
+                </nav>
+            </div>
+            <div class="col-md-2">
+                @if (ViewBag.b != null)
+                {
+                    
+                    <div class="dropdown " id="show1" style="margin-top:9px">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false" >
+                            Login
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                            <a class="dropdown-item" href="#"> @ViewBag.b </a>
+                            <a class="dropdown-item" asp-controller="login" asp-action="dangxuat">Logout</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <form>
+                        <button class="btn btn-success-outline" asp-controller="login" asp-action="index" style="margin-top:9px;">
+                            Login
+                        </button>
+                    </form>
+                };
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

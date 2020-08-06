@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore", "CoffeeStoreAspCore\CoffeeStoreAspCore.csproj", "{8D4B7B78-13FD-435F-9EFA-D557501F2491}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{E9F5AD5A-91E8-421D-90AA-34A97459A440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{A4C0BD4F-E72E-4895-9AEA-3B752EBD5DFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{ABE80ECE-BBCF-4FCA-9D0D-27C6442568C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{7E1B6B4E-D901-4DEC-A07C-2665BE0E06BE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.Data", "CoffeeStoreAspCore.Data\CoffeeStoreAspCore.Data.csproj", "{4142BBF0-1C8B-4781-BA22-A0708267E935}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.Utilities", "CoffeeStoreAspCore.Utilities\CoffeeStoreAspCore.Utilities.csproj", "{EA5D8ED6-C135-4CE6-827D-4173A34A5652}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.ViewModels", "CoffeeStoreAspCore.ViewModels\CoffeeStoreAspCore.ViewModels.csproj", "{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.BackendApi", "CoffeeStoreAspCore.BackendApi\CoffeeStoreAspCore.BackendApi.csproj", "{C173BDFB-1921-4AAF-B753-778FD234DA6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.Application", "CoffeeStoreAspCore.Application\CoffeeStoreAspCore.Application.csproj", "{21E79AC8-0DD2-41A5-98CC-6530F31308B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoffeeStoreAspCore.AdminApp", "CoffeeStoreAspCore.AdminApp\CoffeeStoreAspCore.AdminApp.csproj", "{624EC138-0CFB-4FD1-BD5F-02F204EB6812}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D4B7B78-13FD-435F-9EFA-D557501F2491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D4B7B78-13FD-435F-9EFA-D557501F2491}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D4B7B78-13FD-435F-9EFA-D557501F2491}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D4B7B78-13FD-435F-9EFA-D557501F2491}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4142BBF0-1C8B-4781-BA22-A0708267E935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4142BBF0-1C8B-4781-BA22-A0708267E935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4142BBF0-1C8B-4781-BA22-A0708267E935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4142BBF0-1C8B-4781-BA22-A0708267E935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5D8ED6-C135-4CE6-827D-4173A34A5652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5D8ED6-C135-4CE6-827D-4173A34A5652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5D8ED6-C135-4CE6-827D-4173A34A5652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5D8ED6-C135-4CE6-827D-4173A34A5652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C173BDFB-1921-4AAF-B753-778FD234DA6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C173BDFB-1921-4AAF-B753-778FD234DA6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C173BDFB-1921-4AAF-B753-778FD234DA6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C173BDFB-1921-4AAF-B753-778FD234DA6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E79AC8-0DD2-41A5-98CC-6530F31308B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E79AC8-0DD2-41A5-98CC-6530F31308B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E79AC8-0DD2-41A5-98CC-6530F31308B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E79AC8-0DD2-41A5-98CC-6530F31308B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{624EC138-0CFB-4FD1-BD5F-02F204EB6812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624EC138-0CFB-4FD1-BD5F-02F204EB6812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624EC138-0CFB-4FD1-BD5F-02F204EB6812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624EC138-0CFB-4FD1-BD5F-02F204EB6812}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D4B7B78-13FD-435F-9EFA-D557501F2491} = {E9F5AD5A-91E8-421D-90AA-34A97459A440}
+		{4142BBF0-1C8B-4781-BA22-A0708267E935} = {ABE80ECE-BBCF-4FCA-9D0D-27C6442568C3}
+		{EA5D8ED6-C135-4CE6-827D-4173A34A5652} = {7E1B6B4E-D901-4DEC-A07C-2665BE0E06BE}
+		{752C9C4C-9CC8-4FC0-8B43-213BCA8BF1F1} = {7E1B6B4E-D901-4DEC-A07C-2665BE0E06BE}
+		{C173BDFB-1921-4AAF-B753-778FD234DA6A} = {E9F5AD5A-91E8-421D-90AA-34A97459A440}
+		{21E79AC8-0DD2-41A5-98CC-6530F31308B7} = {A4C0BD4F-E72E-4895-9AEA-3B752EBD5DFF}
+		{624EC138-0CFB-4FD1-BD5F-02F204EB6812} = {E9F5AD5A-91E8-421D-90AA-34A97459A440}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3DE932AE-3FB3-4A68-9239-347599495B1D}
+	EndGlobalSection
+EndGlobal

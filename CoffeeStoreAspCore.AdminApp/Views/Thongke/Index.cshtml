@@ -1,0 +1,199 @@
+﻿@model IEnumerable<CoffeeStoreAspCore.ViewModels.Catalog.RevenueReportViewModel>
+
+@{
+
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Date).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Revenue).ToList());
+    ViewData["Title"] = "Bar Chart";
+
+    ViewData["Title"] = "Thongke";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-9">
+        </div>
+        <div class="col-xl-3 mt-4 mb-4">
+            <div class="filter">
+                <div id="reportrange" class="text-center" style="border-radius:10px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"> </i>
+                    <span>  @ViewBag.fromDate   ----  <i class="glyphicon glyphicon-calendar fa fa-calendar"> </i>   @ViewBag.toDate</span> <b class="caret"></b>
+
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Thống kê doanh thu</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    
+                    <thead style=" background:#ffd800">
+
+                        <tr class="text-center  ">
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Doanh thu
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr class="text-center">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Revenue)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-12">
+            <div class="card mb-4">
+
+                <div class="card-body"><canvas id="myChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+      var ctx = document.getElementById("myChart").getContext('2d');
+       Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 15;
+    Chart.defaults.global.defaultFontColor = '#000000';
+
+ var myLineChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: @Html.Raw(XLabels),
+        datasets: [{
+            label: "Revenue",
+            lineTension: 0.3,
+             backgroundColor: "rgba(2,117,216,0.2)",
+            borderColor: "rgba(2,117,216,1)",
+            pointRadius: 5,
+            pointBackgroundColor: "rgba(2,117,216,1)",
+            pointBorderColor: "rgba(255,255,255,0.8)",
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(2,117,216,1)",
+            pointHitRadius: 50,
+            pointBorderWidth: 2,
+            data:@Html.Raw(YValues)  ,
+        }],
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                 mode: "time",
+                minTickSize: [1, "day"],
+                timeformat: "%d/%m/%y",
+
+            }],
+            yAxes: [{
+                ticks: {
+                   min: 0,
+                   beginAtZero: true
+                },
+                gridLines: {
+                    color: "rgba(0, 0, 0, .125)",
+                }
+            }],
+        },
+        legend: {
+            display: false
+        }
+    }
+ });
+       $('#reportrange').daterangepicker(optionSet1, cb);
+   //  $('#reportrange span').html(moment().subtract(29, 'days').format('YYYY/MM/DD') + ' - ' + moment().format('YYYY/MM/DD'));
+       var cb = function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+
+       };
+     var optionSet1 = {
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment(),
+            minDate: '01/01/2012',
+            maxDate: moment().format('MM/DD/YYYY'),
+            dateLimit: {
+                days: 60
+            },
+            showDropdowns: true,
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'YYYY/MM/DD',
+            separator: ' to ',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            }
+        };
+
+       $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+            console.log("cancel event fired");
+        });
+    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+    
+        var todate = picker.endDate.format('YYYY-MM-DD');
+        var fromdate = picker.startDate.format('YYYY-MM-DD');
+        var url = '@Url.Action("Index", "Thongke")';
+        
+
+        window.location.href = url + '?fromdate=' + fromdate + '&todate=' + todate;
+     });
+      $('#reportrange"]').on('cancel.daterangepicker', function(ev, picker) {
+     $('#reportrange span').html('');
+  });
+             $('#reportrange').on('show.daterangepicker', function () {
+            console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function () {
+            console.log("hide event fired");
+        });
+ 
+
+</script>

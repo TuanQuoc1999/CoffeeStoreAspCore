@@ -1,0 +1,135 @@
+﻿@model CoffeeStoreAspCore.ViewModels.Catalog.Bills.BillViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="card mb-4 " style="margin-top:60px">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Invoices Detail</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xs-12">
+                   
+                  
+                    <div style="margin-left:20px;border:4px solid grays; border-radius:10px; padding:10px; background:#dddddd" class="row">
+
+                        <div class="col-xs-12">
+                            <div class="panel-body" >
+                                <strong>Order Id :</strong>
+                                @Html.DisplayFor(model => model.Id)<br> 
+                                <strong>Order Date :</strong>
+                                @Html.DisplayFor(model => model.Days)<br>
+                                <strong>Customer Name: </strong>
+                                @Html.DisplayFor(model => model.UserName)<br>
+
+                                <strong>Address:</strong>
+                                @Html.DisplayFor(model => model.Address)<br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="text-center"><strong>Order summary</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead  style=" background:#ffd800">
+                                        <tr>
+                                            <td><strong>Item Name</strong></td>
+                                            <td class="text-center"><strong>Item Price</strong></td>
+                                            <td class="text-center"><strong>Item Quantity</strong></td>
+                                            <td class="text-right"><strong>Total</strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.BillDetails)
+                                        {
+                                            <tr  style="background:#e9e9e9">
+                                                <td> @Html.DisplayFor(modelItem => item.NameDrink)</td>
+                                                <td class="text-center">@Html.DisplayFor(modelItem => item.Unitprice)</td>
+                                                <td class="text-center">@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                                <td class="text-right">
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr style="background:#dddddd">
+                                            <td class="highrow"></td>
+                                            <td class="highrow"></td>
+                                            <td class="highrow text-center" style="background:#dddddd"><strong>TotalAmount</strong></td>
+                                            <td class="highrow text-right" style="background:#dddddd" > @Html.DisplayFor(model => model.CalculatedTotalAmount) VND</td>
+                                        </tr>
+
+                                        <tr style="background:#d5d3d3">
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center" style="background:#d5d3d3"><strong>DiscountPercent</strong></td>
+                                            <td class="emptyrow text-right"style="background:#d5d3d3">@Html.DisplayFor(model => model.DiscountPercent) % </td>
+                                        </tr>
+                                        <tr style="background:#b9b5b5">
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center"style="background:#b9b5b5"><strong>DiscountAmount</strong></td>
+                                            <td class="emptyrow text-right"style="background:#b9b5b5">@Html.DisplayFor(model => model.DiscountAmount) VND </td>
+                                        </tr>   
+                                        <tr style="background:#a5a5a5">
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow"></td>
+                                            <td class="emptyrow text-center"style="background:#a5a5a5"><strong>ActualTotalAmount</strong></td>
+                                            <td class="emptyrow text-right"style="background:#a5a5a5">@Html.DisplayFor(model => model.ActualTotalAmount) VND</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <style>
+                .height {
+                    min-height: 200px;
+                }
+
+                .icon {
+                    font-size: 47px;
+                    color: #5CB85C;
+                }
+
+                .iconbig {
+                    font-size: 77px;
+                    color: #5CB85C;
+                }
+
+                .table > tbody > tr > .emptyrow {
+                    border-top: none;
+                }
+
+                .table > thead > tr > .emptyrow {
+                    border-bottom: none;
+                }
+
+                .table > tbody > tr > .highrow {
+                    border-top: 3px solid;
+                }
+            </style>
+            <div>
+                <a asp-action="Index" class="btn btn-primary"> <i class="fas fa-reply"></i>  Back to List  </a>||
+
+                <a asp-action="ExportExcel" class="btn btn-success" asp-route-billId = "@Model.Id" > <i class="fas fa-file-excel"></i>  ExportExcel  </a> 
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

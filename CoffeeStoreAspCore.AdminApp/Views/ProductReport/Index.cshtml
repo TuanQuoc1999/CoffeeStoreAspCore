@@ -1,0 +1,255 @@
+﻿@model IEnumerable<CoffeeStoreAspCore.ViewModels.Catalog.Report.DrinkReportViewModel>
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.NameDrink).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Select(x => x.Revenue).ToList());
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-9">
+        </div>
+        <div class="col-xl-3 mt-4 mb-4">
+            <div class="filter">
+                <div id="reportrange" class="text-center" style="border-radius:10px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"> </i>
+                    <span>  @ViewBag.fromDate   ----  <i class="glyphicon glyphicon-calendar fa fa-calendar"> </i>   @ViewBag.toDate</span> <b class="caret"></b>
+
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="card mb-4 ">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Thống kê Số lượng sản phẩm</div>
+        <div class="card-body ">
+            <div class="table-responsive">
+
+                <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                    <thead style=" background:#ffd800">
+
+                        <tr class="text-center  ">
+
+                            <th>
+                              Drink
+                            </th>
+                            <th>
+                               Quantity
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr class="text-center">
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NameDrink)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Revenue)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-xl-12">
+            <div class="card mb-4">
+
+                <div class="card-body"><canvas id="myChart" width="100%" height="40"></canvas></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+      var ctx = document.getElementById("myChart").getContext('2d');
+       Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 15;
+    Chart.defaults.global.defaultFontColor = '#000000';
+
+ var myLineChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: @Html.Raw(XLabels),
+        datasets: [{
+            label: "Quantity",
+            
+             backgroundColor: [  
+                        'rgba(255, 99, 132, 0.2)',  
+                        'rgba(54, 162, 235, 0.2)',  
+                        'rgba(255, 206, 86, 0.2)',  
+                        'rgba(75, 192, 192, 0.2)',  
+                        'rgba(153, 102, 255, 0.2)',  
+                        'rgba(255, 159, 64, 0.2)',  
+                        'rgba(255, 0, 0)',  
+                        'rgba(0, 255, 0)',  
+                        'rgba(0, 0, 255)',  
+                        'rgba(192, 192, 192)',  
+                        'rgba(255, 255, 0)',  
+                        'rgba(255, 0, 255)'  
+                    ],  
+                    borderColor: [  
+                        'rgba(255,99,132,1)',  
+                        'rgba(54, 162, 235, 1)',  
+                        'rgba(255, 206, 86, 1)',  
+                        'rgba(75, 192, 192, 1)',  
+                        'rgba(153, 102, 255, 1)',  
+                        'rgba(255, 159, 64, 1)',  
+                        'rgba(255, 0, 0)',  
+                        'rgba(0, 255, 0)',  
+                        'rgba(0, 0, 255)',  
+                        'rgba(192, 192, 192)',  
+                        'rgba(255, 255, 0)',  
+                        'rgba(255, 0, 255)'  
+                    ],  
+            borderWidth: 1, 
+                    
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000',
+            data:@Html.Raw(YValues)  ,
+        }],
+    },
+    options:{
+        legend: {
+            display: false
+        },
+       layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }, 
+                scales: {  
+                    yAxes: [{  
+                        ticks: {  
+                            min: 0,  
+                            beginAtZero: true  
+                        },  
+                        gridLines: {  
+                            display: true,  
+                            color: "rgba(255,99,164,0.2)"  
+                        }  
+}],  
+                    xAxes: [{  
+                        ticks: {  
+                            min: 0,  
+                            beginAtZero: true  
+                        },  
+                        gridLines: {  
+                            display: false  
+                        }  
+                    }]  
+                }  
+      }
+    });
+       $('#reportrange').daterangepicker(optionSet1, cb);
+   //  $('#reportrange span').html(moment().subtract(29, 'days').format('YYYY/MM/DD') + ' - ' + moment().format('YYYY/MM/DD'));
+       var cb = function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+
+       };
+     var optionSet1 = {
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment(),
+            minDate: '01/01/2012',
+            maxDate: moment().format('MM/DD/YYYY'),
+            dateLimit: {
+                days: 60
+            },
+            showDropdowns: true,
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+
+            opens: 'left',
+            buttonClasses: ['btn btn-default'],
+            applyClass: 'btn-small btn-primary',
+            cancelClass: 'btn-small',
+            format: 'YYYY/MM/DD',
+            separator: ' to ',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Clear',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            }
+        };
+
+       $('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+            console.log("cancel event fired");
+        });
+    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+      //   $('#reportrange span').html(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+       // loadData(picker.startDate.format('YYYY/MM/DD'), picker.endDate.format('YYYY/MM/DD'));
+
+        var todate = picker.endDate.format('YYYY-MM-DD');
+        var fromdate = picker.startDate.format('YYYY-MM-DD');
+        var url = '@Url.Action("Index", "ProductReport")';
+          //url = url.replace('p2', todate);
+       // url = url.replace('p1', fromdate);
+
+        window.location.href = url + '?fromdate=' + fromdate + '&todate=' + todate;
+     });
+      $('#reportrange"]').on('cancel.daterangepicker', function(ev, picker) {
+     $('#reportrange span').html('');
+  });
+             $('#reportrange').on('show.daterangepicker', function () {
+            console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function () {
+            console.log("hide event fired");
+        });
+    function loadData(from, to) {
+
+        $.ajax({
+            type: "GET",
+             contentType: "application/json; charset=utf-8",
+             dataType: 'json',
+            url: "Thongke/Get",
+
+            data: {
+                fromdate: from,
+                todate: to
+            },
+            success: function (response) {
+              alert(response)
+
+            },
+            error: function (status) {
+                 alert(status)
+            }
+        });
+    }
+
+</script>
+
+

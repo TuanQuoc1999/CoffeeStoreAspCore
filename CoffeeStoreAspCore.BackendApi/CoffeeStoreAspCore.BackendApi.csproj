@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-CoffeeStoreAspCore.BackendApi-B81DE946-7E3B-45A8-8D73-919B74CDA98A</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.1.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoffeeStoreAspCore.Application\CoffeeStoreAspCore.Application.csproj" />
+    <ProjectReference Include="..\CoffeeStoreAspCore.Data\CoffeeStoreAspCore.Data.csproj" />
+    <ProjectReference Include="..\CoffeeStoreAspCore.Utilities\CoffeeStoreAspCore.Utilities.csproj" />
+    <ProjectReference Include="..\CoffeeStoreAspCore.ViewModels\CoffeeStoreAspCore.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
